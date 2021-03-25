@@ -6,35 +6,84 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
+body {
+    background-color: #ffdab9;
+}
+/* HEADER */
 .header {
-    background-color:seagreen;
+    background-color:#2e8b57;
     padding: 1em;
     text-align: center;
     color: #fff;
 }
 
 .header h1 {
-    font-size: 44px;
+    font-size: 36px;
     border-bottom: #fff solid 3px;
     width: 50%;
     margin: 0 auto;
 }
 
 .header h2 {
-    font-size: 32px;
+    font-size: 28px;
     font-style: italic;
     margin-top: 0.3em;
 }
 
+/* MAIN */
 .main {
     display: flex;
     flex-direction: column;
 }
 
+/* SEARCH */
 .search-section {
     width: 30%;
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    background-color: #f4c594;
+    padding: 1em;
+    border-radius: 3px;
 }
 
+.search-bar {
+    margin-bottom: 1em;
+}
+
+.search-bar h3 {
+    font-size: 28px;
+}
+
+.search-bar input {
+    font-size: 28px;
+}
+
+.search-bar button {
+    background-color:#4169e1;
+    font-size: 20px;
+}
+
+.search-section ul{
+    list-style: none;
+}
+
+.search-section li {
+    font-size: 24px;
+    margin-bottom: 0.5em;
+    background-color: #e4af79;
+    padding: 0.5em;
+}
+
+.clear-button {
+    background-color: #4169e1;
+    font-size: 24px;
+    font-weight: bolder;
+    color: #fff;
+}
+
+/* WEATHER */
 .selected-city-section {
     width: 70%;
+    background-color: rgb(244 197 148);
 }
