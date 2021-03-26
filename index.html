@@ -19,7 +19,7 @@
                 <input id="city-search">
                 <button>🔍</button>
             </div>
-            <ul>
+            <ul class="day-ul">
                 <li>Example, TX</li>
                 <li>Example, TX</li>
                 <li>Example, TX</li>
@@ -28,7 +28,106 @@
             <button id="clear-button" class="clear-button">Clear Search History</button>
         </section>
         <section class="selected-city-section">
-
+            <div class="current-forecast">
+                <h3>Example, TX (MM,DD,YYYY)</h3>
+                <p>
+                    Temperature: <span id=tempEl></span>°F
+                </p>
+                <p>
+                    Humidity: <span id="humidityEl"></span>%
+                </p>
+                <p>
+                    Wind Speed: <span id="windSpeedEl"></span> MPH
+                </p>
+                <p>
+                    UV Index: <span id="uvIndexEl"></span>
+                </p>
+            </div>
+            <div class="five-day-forecast">
+                <h3>5-Day Forecast:</h3>
+                <div class="day-container">
+                    <div class="day">
+                        <ul class="day-ul">
+                            <li>
+                                <h4 id="daysOneDateEl">(MM,DD,YYYY)</h4>
+                            </li>
+                            <li>
+                                <img id="daysOneImageEl">
+                            </li>
+                            <li>
+                                <p>Temp: <span id="daysOneTempEl">100.00</span>°F</p>
+                            </li>
+                            <li>
+                                <p>Humidity: <span id="daysOneHumidityEl">50</span>%</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="day">
+                        <ul class="day-ul">
+                            <li>
+                                <h4 id="daysTwoDateEl">(MM,DD,YYYY)</h4>
+                            </li>
+                            <li>
+                                <img id="daysTwoImageEl">
+                            </li>
+                            <li>
+                                <p>Temp: <span id="daysTwoTempEl">100.00</span>°F</p>
+                            </li>
+                            <li>
+                                <p>Humidity: <span id="daysTwoHumidityEl">50</span>%</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="day">
+                        <ul class="day-ul">
+                            <li>
+                                <h4 id="daysThreeDateEl">(MM,DD,YYYY)</h4>
+                            </li>
+                            <li>
+                                <img id="daysThreeImageEl">
+                            </li>
+                            <li>
+                                <p>Temp: <span id="daysThreeTempEl">100.00</span>°F</p>
+                            </li>
+                            <li>
+                                <p>Humidity: <span id="daysThreeHumidityEl">50</span>%</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="day">
+                        <ul class="day-ul">
+                            <li>
+                                <h4 id="daysFourDateEl">(MM,DD,YYYY)</h4>
+                            </li>
+                            <li>
+                                <img id="daysFourImageEl">
+                            </li>
+                            <li>
+                                <p>Temp: <span id="daysFourTempEl">100.00</span>°F</p>
+                            </li>
+                            <li>
+                                <p>Humidity: <span id="daysFourHumidityEl">50</span>%</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="day">
+                        <ul class="day-ul">
+                            <li>
+                                <h4 id="daysFiveDateEl">(MM,DD,YYYY)</h4>
+                            </li>
+                            <li>
+                                <img id="daysFiveImageEl">
+                            </li>
+                            <li>
+                                <p>Temp: <span id="daysFiveTempEl">100.00</span>°F</p>
+                            </li>
+                            <li>
+                                <p>Humidity: <span id="daysFiveHumidityEl">50</span>%</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
     <script type="text/Javascript" src="assets/js/script.js"></script>
