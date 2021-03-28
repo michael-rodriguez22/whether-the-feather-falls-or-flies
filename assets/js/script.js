@@ -9,33 +9,39 @@ let cityLon;
 let callData;
 
 
-function owmCall() {
-    // get lat and lon from city name
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${userSearch}&appid=${key}`)
-    .then(function (cityResponse) {
-        cityResponse.json()
-        .then(function (cityData) {
-            cityName = cityData.name;
-            cityLat = Number(cityData.coord.lat);
-            cityLon = Number(cityData.coord.lon);  
-            // get required info from lat and lon                 
-            fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&appid=${key}`)
-            .then(function (llResponse) {
-                llResponse.json()
-                .then(function (llData) {
-                    callData = llData;
-                })
-            })
-        })
-    });
-}
-
 function citySearch() {
     userSearch = citySearchTextEl.value;
     if (userSearch) {
-        owmCall();
-        // displayData()
+        // get lat and lon from city name
+        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${userSearch}&appid=${key}`)
+            .then(function (cityResponse) {
+                cityResponse.json()
+                    .then(function (cityData) {
+                        cityName = cityData.name;
+                        cityLat = Number(cityData.coord.lat);
+                        cityLon = Number(cityData.coord.lon);
+                        // get required info from lat and lon                 
+                        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&appid=${key}`)
+                            .then(function (llResponse) {
+                                llResponse.json()
+                                    .then(function (llData) {
+                                        callData = llData;
+                                        // save search to local storage
+                                        saveSearch();
+                                        // display information to page
+                                    })
+                            })
+                    })
+            });
     }
+}
+
+let savedSearchObject = new Object();
+function saveSearch() {
+    savedSearchObject.name = cityName;
+    savedSearchObject.data = JSON.stringify(callData);
+    // console.log(savedSearchObject);
+    localStorage.setItem("1", JSON.stringify(savedSearchObject))
 }
 
 function clearHistory() {
@@ -46,7 +52,7 @@ function clearHistory() {
 
 citySearchTextEl.addEventListener("keypress", function (e) {
     if (e.key === "Enter") {
-        citySearch()
+        citySearch();
     }
 });
 citySearchButtonEl.addEventListener("click", citySearch);
