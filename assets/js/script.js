@@ -13,6 +13,7 @@ function citySearch() {
     userSearch = citySearchTextEl.value;
     if (userSearch) {
         // get lat and lon from city name
+        citySearchTextEl.value = "";
         fetch(`http://api.openweathermap.org/data/2.5/weather?q=${userSearch}&appid=${key}`)
             .then(function (cityResponse) {
                 cityResponse.json()
@@ -36,18 +37,22 @@ function citySearch() {
     }
 }
 
+let keyIterator = 1;
 let savedSearchObject = new Object();
 function saveSearch() {
     savedSearchObject.name = cityName;
     savedSearchObject.data = JSON.stringify(callData);
     // console.log(savedSearchObject);
-    localStorage.setItem("1", JSON.stringify(savedSearchObject))
+    localStorage.setItem(JSON.stringify(keyIterator), JSON.stringify(savedSearchObject))
+    keyIterator++;
 }
 
 function clearHistory() {
     while (searchULEl.firstChild) {
         searchULEl.removeChild(searchULEl.firstChild);
     }
+    localStorage.clear();
+    keyIterator = 1;
 }
 
 citySearchTextEl.addEventListener("keypress", function (e) {
