@@ -21,7 +21,6 @@ ISSUES
     - current city section
         > current day info
         > 5 day forecast info
-    - allow values to be updated dynamically through weather API
     - save searched cities to local storage 
         > make searched cities clickable to display that cities weather information
         > add button(s) to clear search history and/or clear individual cities from search history?

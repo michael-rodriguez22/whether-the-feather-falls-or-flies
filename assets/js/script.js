@@ -3,25 +3,40 @@ let citySearchButtonEl = document.getElementById("city-search-button");
 let searchULEl = document.getElementById("search-bar-ul");
 let clearButtonEl = document.getElementById("clear-button");
 let userSearch;
+let cityName;
+let cityLat;
+let cityLon;
+let callData;
 
+
+function owmCall() {
+    // get lat and lon from city name
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${userSearch}&appid=${key}`)
+    .then(function (cityResponse) {
+        cityResponse.json()
+        .then(function (cityData) {
+            cityName = cityData.name;
+            cityLat = Number(cityData.coord.lat);
+            cityLon = Number(cityData.coord.lon);  
+            // get required info from lat and lon                 
+            fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&appid=${key}`)
+            .then(function (llResponse) {
+                llResponse.json()
+                .then(function (llData) {
+                    callData = llData;
+                })
+            })
+        })
+    });
+}
 
 function citySearch() {
     userSearch = citySearchTextEl.value;
     if (userSearch) {
-        document.getElementById("forecast-city-el").innerText = userSearch;
-        let newLI = document.createElement("li");
-        newLI.innerText = userSearch;
-        searchULEl.prepend(newLI);
-        citySearchTextEl.value = "";
+        owmCall();
+        // displayData()
     }
 }
-
-citySearchButtonEl.addEventListener("click", citySearch);
-citySearchTextEl.addEventListener("keypress", function(e){
-    if (e.key === "Enter" ) {
-        citySearch()
-    }
-})
 
 function clearHistory() {
     while (searchULEl.firstChild) {
@@ -29,4 +44,10 @@ function clearHistory() {
     }
 }
 
+citySearchTextEl.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+        citySearch()
+    }
+});
+citySearchButtonEl.addEventListener("click", citySearch);
 clearButtonEl.addEventListener("click", clearHistory);
