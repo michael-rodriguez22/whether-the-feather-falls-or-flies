@@ -5,7 +5,6 @@ function displayDates() {
     currentDateEl.innerText = Date();
 }
 displayDates();
-const updateTime = setInterval(displayDates, 1000);
 
 // SEARCH FOR CITY
 function citySearch() {
@@ -21,7 +20,7 @@ function citySearch() {
                         let cityLat = Number(cityData.coord.lat);
                         let cityLon = Number(cityData.coord.lon);
                         // get required info from lat and lon                 
-                        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&appid=${key}`)
+                        fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${cityLat}&lon=${cityLon}&units=imperial&appid=${key}`)
                             .then(function (llResponse) {
                                 llResponse.json()
                                     .then(function (llData) {
@@ -67,7 +66,11 @@ let currentUVIndexEl = document.getElementById("current-uv-index-el");
 
 function displayData() {
     forecastCityEl.innerText = cityName;
-
+    currentTempEl.innerText = callData.current.temp;
+    currentHumidityEl.innerText = callData.current.humidity;
+    currentWindSpeedEl.innerText = callData.current.wind_speed;
+    currentUVIndexEl.innerText = callData.current.uvi;
+    displayDates();
 }
 
 // EVENT LISTENERS
