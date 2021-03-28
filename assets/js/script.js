@@ -2,12 +2,19 @@ let citySearchTextEl = document.getElementById("city-search-text");
 let citySearchButtonEl = document.getElementById("city-search-button");
 let searchULEl = document.getElementById("search-bar-ul");
 let clearButtonEl = document.getElementById("clear-button");
+let forecastCityEl = document.getElementById("forecast-city-el");
+let currentDateEl = document.getElementById("current-date-el");
 let userSearch;
 let cityName;
 let cityLat;
 let cityLon;
 let callData;
 
+function displayDates() {
+    currentDateEl.innerText = Date();
+}
+displayDates();
+const updateTime = setInterval(displayDates, 1000);
 
 function citySearch() {
     userSearch = citySearchTextEl.value;
@@ -30,6 +37,7 @@ function citySearch() {
                                         // save search to local storage
                                         saveSearch();
                                         // display information to page
+                                        displayData();
                                     })
                             })
                     })
@@ -53,6 +61,10 @@ function clearHistory() {
     }
     localStorage.clear();
     keyIterator = 1;
+}
+
+function displayData() {
+    forecastCityEl.innerText = cityName;
 }
 
 citySearchTextEl.addEventListener("keypress", function (e) {

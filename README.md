@@ -24,4 +24,5 @@ ISSUES
     - save searched cities to local storage 
         > make searched cities clickable to display that cities weather information
         > add button(s) to clear search history and/or clear individual cities from search history?
-    
+    - display cities to page
+        > should display when a city is searched or when a city from the search history is clicked on
