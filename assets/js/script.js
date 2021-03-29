@@ -131,7 +131,7 @@ function displayData(passedData) {
     document.querySelector(".selected-city-section").style.display = "flex";
     document.querySelector(".search-section").style.margin = "1em";
     forecastCityEl.innerText = cityName;
-    currentWeatherIconEl.src = `http://openweathermap.org/img/wn/${passedData.current.weather[0].icon}@2x.png`;
+    currentWeatherIconEl.src = `https://openweathermap.org/img/wn/${passedData.current.weather[0].icon}@2x.png`;
     currentTempEl.innerText = passedData.current.temp;
     currentHumidityEl.innerText = passedData.current.humidity;
     currentWindSpeedEl.innerText = passedData.current.wind_speed;
@@ -143,11 +143,11 @@ function displayData(passedData) {
     } else {
         currentUVIndexEl.style.backgroundColor = "#8000009e";
     }
-    daysOneImageEl.src = `http://openweathermap.org/img/wn/${passedData.daily[1].weather[0].icon}@2x.png`;
-    daysTwoImageEl.src = `http://openweathermap.org/img/wn/${passedData.daily[2].weather[0].icon}@2x.png`;
-    daysThreeImageEl.src = `http://openweathermap.org/img/wn/${passedData.daily[3].weather[0].icon}@2x.png`;
-    daysFourImageEl.src = `http://openweathermap.org/img/wn/${passedData.daily[4].weather[0].icon}@2x.png`;
-    daysFiveImageEl.src = `http://openweathermap.org/img/wn/${passedData.daily[5].weather[0].icon}@2x.png`;
+    daysOneImageEl.src = `https://openweathermap.org/img/wn/${passedData.daily[1].weather[0].icon}@2x.png`;
+    daysTwoImageEl.src = `https://openweathermap.org/img/wn/${passedData.daily[2].weather[0].icon}@2x.png`;
+    daysThreeImageEl.src = `https://openweathermap.org/img/wn/${passedData.daily[3].weather[0].icon}@2x.png`;
+    daysFourImageEl.src = `https://openweathermap.org/img/wn/${passedData.daily[4].weather[0].icon}@2x.png`;
+    daysFiveImageEl.src = `https://openweathermap.org/img/wn/${passedData.daily[5].weather[0].icon}@2x.png`;
     daysOneTempEl.innerText = passedData.daily[1].temp.day;
     daysTwoTempEl.innerText = passedData.daily[2].temp.day;
     daysThreeTempEl.innerText = passedData.daily[3].temp.day;
