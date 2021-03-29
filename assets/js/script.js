@@ -1,3 +1,5 @@
+let cityName;
+let callData;
 // DATES
 
 let currentDateEl = document.getElementById("current-date-el");
@@ -21,7 +23,6 @@ function citySearch() {
             .then(function (cityResponse) {
                 cityResponse.json()
                     .then(function (cityData) {
-                        console.log(cityData)
                         cityName = cityData.name;
                         let cityLat = Number(cityData.coord.lat);
                         let cityLon = Number(cityData.coord.lon);
@@ -43,13 +44,14 @@ function citySearch() {
 }
 
 // SEARCH HISTORY
-let keyIterator = 1;
+let searchULEl = document.getElementById("search-bar-ul");
+let keyIterator;
 let savedSearchObject = new Object();
 function saveSearch() {
+    keyIterator = (localStorage.length + 1);
     savedSearchObject.name = cityName;
     savedSearchObject.data = JSON.stringify(callData);
-    localStorage.setItem(JSON.stringify(keyIterator), JSON.stringify(savedSearchObject))
-    keyIterator++;
+    localStorage.setItem(String(keyIterator), JSON.stringify(savedSearchObject));
 }
 
 function clearHistory() {
@@ -57,20 +59,32 @@ function clearHistory() {
         searchULEl.removeChild(searchULEl.firstChild);
     }
     localStorage.clear();
-    keyIterator = 1;
 }
 
-// global variables
-let cityName;
-let callData;
-let searchULEl = document.getElementById("search-bar-ul");
+let newLi;
+function displayHistory() {
+    searchULEl.innerHTML = ""
+    for (let i = localStorage.length; i > 0; i--) {
+        savedSearchObject.name = JSON.parse(localStorage.getItem(i)).name;
+        savedSearchObject.data = JSON.parse(JSON.parse(localStorage.getItem(i)).data);
+        cityName = savedSearchObject.name;
+        callData = savedSearchObject.data;
+        newLi = document.createElement("li");
+        newLi.innerText = cityName;
+        searchULEl.appendChild(newLi);
+    }
+    newLi = "";
+}
+
+
+// current forecast elements
 let forecastCityEl = document.getElementById("forecast-city-el");
 let currentWeatherIconEl = document.getElementById("current-weather-icon-el");
 let currentTempEl = document.getElementById("current-temp-el");
 let currentHumidityEl = document.getElementById("current-humidity-el");
 let currentWindSpeedEl = document.getElementById("current-wind-speed-el");
 let currentUVIndexEl = document.getElementById("current-uv-index-el");
-// days
+// 5 day forecast elements
 let daysOneImageEl = document.getElementById("daysOneImageEl");
 let daysOneTempEl = document.getElementById("daysOneTempEl");
 let daysOneHumidityEl = document.getElementById("daysOneHumidityEl");
@@ -117,6 +131,7 @@ function displayData() {
     daysThreeHumidityEl.innerText = callData.daily[3].humidity;
     daysFourHumidityEl.innerText = callData.daily[4].humidity;
     daysFiveHumidityEl.innerText = callData.daily[5].humidity;
+    displayHistory();
     // displayDates();
 }
 
