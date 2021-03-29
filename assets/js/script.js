@@ -32,12 +32,13 @@ displayDates();
 
 // SEARCH FOR CITY
 let cityName;
-function citySearch() {
-    let userSearch = citySearchTextEl.value;
-    if (userSearch) {
+let userSearch;
+function citySearch(passedSearch) {
+    // passedSearch = citySearchTextEl.value;
+    if (passedSearch) {
         // get lat and lon from city name
         citySearchTextEl.value = "";
-        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${userSearch}&appid=${key}`)
+        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${passedSearch}&appid=${key}`)
             .then(function (cityResponse) {
                 cityResponse.json()
                     .then(function (cityData) {
@@ -88,6 +89,9 @@ function displayHistory(passedName, passedData) {
         passedData = savedSearchObject.data;
         newLi = document.createElement("li");
         newLi.innerText = passedName;
+        newLi.addEventListener("click", function() {
+            citySearch(this.innerText);
+        })
         searchULEl.appendChild(newLi);
     }
 
@@ -164,8 +168,12 @@ let clearButtonEl = document.getElementById("clear-button");
 
 citySearchTextEl.addEventListener("keypress", function (e) {
     if (e.key === "Enter") {
-        citySearch();
+        userSearch = citySearchTextEl.value;
+        citySearch(userSearch);
     }
 });
-citySearchButtonEl.addEventListener("click", citySearch);
+citySearchButtonEl.addEventListener("click", function() {
+    userSearch = citySearchTextEl.value;
+    citySearch(userSearch);
+});
 clearButtonEl.addEventListener("click", clearHistory);
