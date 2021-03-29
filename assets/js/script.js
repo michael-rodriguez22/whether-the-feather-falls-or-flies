@@ -39,7 +39,7 @@ function citySearch(passedSearch) {
     if (passedSearch) {
         // get lat and lon from city name
         citySearchTextEl.value = "";
-        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${passedSearch}&appid=${key}`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${passedSearch}&appid=${key}`)
             .then(function (cityResponse) {
                 cityResponse.json()
                     .then(function (cityData) {
