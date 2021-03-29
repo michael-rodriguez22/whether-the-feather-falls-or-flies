@@ -8,6 +8,125 @@
     <title>Whether The Feather Falls Or Flies</title>
 </head>
 <body>
+    <header class="header">
+        <h1>Whether The Feather Falls Or Flies</h1>
+        <h2>The Weather Information You Need To Know</h2>
+    </header>
+    <main class="main">
+        <section class="search-section">
+            <div class="search-bar">
+                <h3>Search For A City:</h3>
+                <input id="city-search-text">
+                <button id="city-search-button">🔍</button>
+            </div>
+            <button id="clear-button" class="clear-button">Clear Search History</button>
+            <ul id="search-bar-ul"></ul>
+        </section>
+        <section class="selected-city-section">
+            <div class="current-forecast">
+                <h3><span id="forecast-city-el"></span> <span id="current-date-el">(MM,DD,YYYY)</span></h3>
+                <img class="main-weather-icon" id="current-weather-icon-el">
+                <p>
+                    Temperature: <span id="current-temp-el"></span>°F
+                </p>
+                <p>
+                    Humidity: <span id="current-humidity-el"></span>%
+                </p>
+                <p>
+                    Wind Speed: <span id="current-wind-speed-el"></span> MPH
+                </p>
+                <p>
+                    UV Index: <span id="current-uv-index-el"></span>
+                </p>
+            </div>
+            <div class="five-day-forecast">
+                <h3>5-Day Forecast:</h3>
+                <div class="day-container">
+                    <div class="day">
+                        <ul class="day-ul">
+                            <li>
+                                <h4 id="daysOneDateEl">(MM,DD,YYYY)</h4>
+                            </li>
+                            <li>
+                                <img class="day-weather-icon" id="daysOneImageEl">
+                            </li>
+                            <li>
+                                <p>Temp: <span id="daysOneTempEl"></span>°F</p>
+                            </li>
+                            <li>
+                                <p>Humidity: <span id="daysOneHumidityEl"></span>%</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="day">
+                        <ul class="day-ul">
+                            <li>
+                                <h4 id="daysTwoDateEl">(MM,DD,YYYY)</h4>
+                            </li>
+                            <li>
+                                <img class="day-weather-icon" id="daysTwoImageEl">
+                            </li>
+                            <li>
+                                <p>Temp: <span id="daysTwoTempEl"></span>°F</p>
+                            </li>
+                            <li>
+                                <p>Humidity: <span id="daysTwoHumidityEl"></span>%</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="day">
+                        <ul class="day-ul">
+                            <li>
+                                <h4 id="daysThreeDateEl">(MM,DD,YYYY)</h4>
+                            </li>
+                            <li>
+                                <img class="day-weather-icon" id="daysThreeImageEl">
+                            </li>
+                            <li>
+                                <p>Temp: <span id="daysThreeTempEl"></span>°F</p>
+                            </li>
+                            <li>
+                                <p>Humidity: <span id="daysThreeHumidityEl"></span>%</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="day">
+                        <ul class="day-ul">
+                            <li>
+                                <h4 id="daysFourDateEl">(MM,DD,YYYY)</h4>
+                            </li>
+                            <li>
+                                <img class="day-weather-icon" id="daysFourImageEl">
+                            </li>
+                            <li>
+                                <p>Temp: <span id="daysFourTempEl"></span>°F</p>
+                            </li>
+                            <li>
+                                <p>Humidity: <span id="daysFourHumidityEl"></span>%</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="day">
+                        <ul class="day-ul">
+                            <li>
+                                <h4 id="daysFiveDateEl">(MM,DD,YYYY)</h4>
+                            </li>
+                            <li>
+                                <img class="day-weather-icon" id="daysFiveImageEl">
+                            </li>
+                            <li>
+                                <p>Temp: <span id="daysFiveTempEl"></span>°F</p>
+                            </li>
+                            <li>
+                                <p>Humidity: <span id="daysFiveHumidityEl"></span>%</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script type="text/Javascript" src="assets/js/config.js"></script>
     <script type="text/Javascript" src="assets/js/script.js"></script>
 </body>
 </html>
