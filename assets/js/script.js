@@ -1,6 +1,5 @@
 document.querySelector(".selected-city-section").style.display = "none";
-let cityName;
-// let callData;
+
 // DATES
 let currentDateEl = document.getElementById("current-date-el");
 let daysOneDateEl = document.getElementById("daysOneDateEl");
@@ -8,12 +7,31 @@ let daysTwoDateEl = document.getElementById("daysTwoDateEl");
 let daysThreeDateEl = document.getElementById("daysThreeDateEl");
 let daysFourDateEl = document.getElementById("daysFourDateEl");
 let daysFiveDateEl = document.getElementById("daysFiveDateEl");
-// function displayDates() {
-//     currentDateEl.innerText = Date();
-// }
-// displayDates();
+
+function nextDay(passedDate){
+    let dt = new Date(passedDate);
+    return new Date((dt.setDate(dt.getDate()+1)));
+}
+
+let today = new Date();
+let daysOne = nextDay(today);
+let daysTwo = nextDay(daysOne);
+let daysThree = nextDay(daysTwo);
+let daysFour = nextDay(daysThree);
+let daysFive = nextDay(daysFour);
+
+function displayDates() {
+    currentDateEl.innerText = `${String(today.getMonth()+1).padStart(2,0)}/${String(today.getDate()).padStart(2,0)}/${today.getFullYear()}`
+    daysOneDateEl.innerText = `${String(daysOne.getMonth()+1).padStart(2,0)}/${String(daysOne.getDate()).padStart(2,0)}/${daysOne.getFullYear()}`
+    daysTwoDateEl.innerText = `${String(daysTwo.getMonth()+1).padStart(2,0)}/${String(daysTwo.getDate()).padStart(2,0)}/${daysTwo.getFullYear()}`
+    daysThreeDateEl.innerText = `${String(daysThree.getMonth()+1).padStart(2,0)}/${String(daysThree.getDate()).padStart(2,0)}/${daysThree.getFullYear()}`
+    daysFourDateEl.innerText = `${String(daysFour.getMonth()+1).padStart(2,0)}/${String(daysFour.getDate()).padStart(2,0)}/${daysFour.getFullYear()}`
+    daysFiveDateEl.innerText = `${String(daysFive.getMonth()+1).padStart(2,0)}/${String(daysFive.getDate()).padStart(2,0)}/${daysFive.getFullYear()}`
+}
+displayDates();
 
 // SEARCH FOR CITY
+let cityName;
 function citySearch() {
     let userSearch = citySearchTextEl.value;
     if (userSearch) {
@@ -31,7 +49,6 @@ function citySearch() {
                             .then(function (llResponse) {
                                 llResponse.json()
                                     .then(function (llData) {
-                                        // callData = llData;
                                         // save search to local storage
                                         saveSearch(llData);
                                         // display information to page
@@ -137,7 +154,7 @@ function displayData(passedData) {
     daysFourHumidityEl.innerText = passedData.daily[4].humidity;
     daysFiveHumidityEl.innerText = passedData.daily[5].humidity;
     displayHistory();
-    // displayDates();
+    displayDates();
 }
 
 // EVENT LISTENERS
