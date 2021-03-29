@@ -1,5 +1,5 @@
 let cityName;
-let callData;
+// let callData;
 // DATES
 
 let currentDateEl = document.getElementById("current-date-el");
@@ -31,11 +31,11 @@ function citySearch() {
                             .then(function (llResponse) {
                                 llResponse.json()
                                     .then(function (llData) {
-                                        callData = llData;
+                                        // callData = llData;
                                         // save search to local storage
-                                        saveSearch();
+                                        saveSearch(llData);
                                         // display information to page
-                                        displayData();
+                                        displayData(llData);
                                     })
                             })
                     })
@@ -47,10 +47,10 @@ function citySearch() {
 let searchULEl = document.getElementById("search-bar-ul");
 let keyIterator;
 let savedSearchObject = new Object();
-function saveSearch() {
+function saveSearch(passedData) {
     keyIterator = (localStorage.length + 1);
     savedSearchObject.name = cityName;
-    savedSearchObject.data = JSON.stringify(callData);
+    savedSearchObject.data = JSON.stringify(passedData);
     localStorage.setItem(String(keyIterator), JSON.stringify(savedSearchObject));
 }
 
@@ -62,20 +62,22 @@ function clearHistory() {
 }
 
 let newLi;
-function displayHistory() {
+function displayHistory(passedName, passedData) {
     searchULEl.innerHTML = ""
     for (let i = localStorage.length; i > 0; i--) {
         savedSearchObject.name = JSON.parse(localStorage.getItem(i)).name;
         savedSearchObject.data = JSON.parse(JSON.parse(localStorage.getItem(i)).data);
-        cityName = savedSearchObject.name;
-        callData = savedSearchObject.data;
+        passedName = savedSearchObject.name;
+        passedData = savedSearchObject.data;
         newLi = document.createElement("li");
-        newLi.innerText = cityName;
+        newLi.innerText = passedName;
         searchULEl.appendChild(newLi);
     }
-    newLi = "";
 }
 
+if (localStorage.length) {
+    displayHistory(localStorage[localStorage.length].name, localStorage[localStorage.length].data);    
+}
 
 // current forecast elements
 let forecastCityEl = document.getElementById("forecast-city-el");
@@ -102,35 +104,35 @@ let daysFiveTempEl = document.getElementById("daysFiveTempEl");
 let daysFiveHumidityEl = document.getElementById("daysFiveHumidityEl");
 
 // DISPLAY INFO ON PAGE
-function displayData() {
+function displayData(passedData) {
     forecastCityEl.innerText = cityName;
-    currentWeatherIconEl.src = `http://openweathermap.org/img/wn/${callData.current.weather[0].icon}@2x.png`;
-    currentTempEl.innerText = callData.current.temp;
-    currentHumidityEl.innerText = callData.current.humidity;
-    currentWindSpeedEl.innerText = callData.current.wind_speed;
-    currentUVIndexEl.innerText = callData.current.uvi;
-    if (callData.current.uvi < 3) {
+    currentWeatherIconEl.src = `http://openweathermap.org/img/wn/${passedData.current.weather[0].icon}@2x.png`;
+    currentTempEl.innerText = passedData.current.temp;
+    currentHumidityEl.innerText = passedData.current.humidity;
+    currentWindSpeedEl.innerText = passedData.current.wind_speed;
+    currentUVIndexEl.innerText = passedData.current.uvi;
+    if (passedData.current.uvi < 3) {
         currentUVIndexEl.style.backgroundColor = "#2e8b57";
-    } else if (callData.current.uvi > 3 && callData.current.uvi <= 8) {
+    } else if (passedData.current.uvi > 3 && passedData.current.uvi <= 8) {
         currentUVIndexEl.style.backgroundColor = "#dfdf3191";
     } else {
         currentUVIndexEl.style.backgroundColor = "#8000009e";
     }
-    daysOneImageEl.src = `http://openweathermap.org/img/wn/${callData.daily[1].weather[0].icon}@2x.png`;
-    daysTwoImageEl.src = `http://openweathermap.org/img/wn/${callData.daily[2].weather[0].icon}@2x.png`;
-    daysThreeImageEl.src = `http://openweathermap.org/img/wn/${callData.daily[3].weather[0].icon}@2x.png`;
-    daysFourImageEl.src = `http://openweathermap.org/img/wn/${callData.daily[4].weather[0].icon}@2x.png`;
-    daysFiveImageEl.src = `http://openweathermap.org/img/wn/${callData.daily[5].weather[0].icon}@2x.png`;
-    daysOneTempEl.innerText = callData.daily[1].temp.day;
-    daysTwoTempEl.innerText = callData.daily[2].temp.day;
-    daysThreeTempEl.innerText = callData.daily[3].temp.day;
-    daysFourTempEl.innerText = callData.daily[4].temp.day;
-    daysFiveTempEl.innerText = callData.daily[5].temp.day;
-    daysOneHumidityEl.innerText = callData.daily[1].humidity;
-    daysTwoHumidityEl.innerText = callData.daily[2].humidity;
-    daysThreeHumidityEl.innerText = callData.daily[3].humidity;
-    daysFourHumidityEl.innerText = callData.daily[4].humidity;
-    daysFiveHumidityEl.innerText = callData.daily[5].humidity;
+    daysOneImageEl.src = `http://openweathermap.org/img/wn/${passedData.daily[1].weather[0].icon}@2x.png`;
+    daysTwoImageEl.src = `http://openweathermap.org/img/wn/${passedData.daily[2].weather[0].icon}@2x.png`;
+    daysThreeImageEl.src = `http://openweathermap.org/img/wn/${passedData.daily[3].weather[0].icon}@2x.png`;
+    daysFourImageEl.src = `http://openweathermap.org/img/wn/${passedData.daily[4].weather[0].icon}@2x.png`;
+    daysFiveImageEl.src = `http://openweathermap.org/img/wn/${passedData.daily[5].weather[0].icon}@2x.png`;
+    daysOneTempEl.innerText = passedData.daily[1].temp.day;
+    daysTwoTempEl.innerText = passedData.daily[2].temp.day;
+    daysThreeTempEl.innerText = passedData.daily[3].temp.day;
+    daysFourTempEl.innerText = passedData.daily[4].temp.day;
+    daysFiveTempEl.innerText = passedData.daily[5].temp.day;
+    daysOneHumidityEl.innerText = passedData.daily[1].humidity;
+    daysTwoHumidityEl.innerText = passedData.daily[2].humidity;
+    daysThreeHumidityEl.innerText = passedData.daily[3].humidity;
+    daysFourHumidityEl.innerText = passedData.daily[4].humidity;
+    daysFiveHumidityEl.innerText = passedData.daily[5].humidity;
     displayHistory();
     // displayDates();
 }
