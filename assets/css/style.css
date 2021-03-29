@@ -41,7 +41,7 @@ body {
     width: 30%;
     display: flex;
     flex-direction: column;
-    margin: 1em;
+    margin: 1em auto;
     background-color: #f4c594;
     padding: 1em;
     border-radius: 8px;
@@ -70,7 +70,7 @@ body {
 
 .search-section li {
     font-size: 24px;
-    margin-bottom: 0.5em;
+    margin-top: 0.5em;
     background-color: #e4af79;
     border-radius: 8px;
     padding: 0.5em;
@@ -86,7 +86,7 @@ body {
 /* WEATHER */
 .selected-city-section {
     width: 70%;
-    display: flex;
+    display: none;
     flex-direction: column;
     margin: 1em 1em 1em 0;
     background-color: #f4c594;

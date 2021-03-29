@@ -1,7 +1,7 @@
+document.querySelector(".selected-city-section").style.display = "none";
 let cityName;
 // let callData;
 // DATES
-
 let currentDateEl = document.getElementById("current-date-el");
 let daysOneDateEl = document.getElementById("daysOneDateEl");
 let daysTwoDateEl = document.getElementById("daysTwoDateEl");
@@ -73,6 +73,7 @@ function displayHistory(passedName, passedData) {
         newLi.innerText = passedName;
         searchULEl.appendChild(newLi);
     }
+
 }
 
 if (localStorage.length) {
@@ -105,6 +106,8 @@ let daysFiveHumidityEl = document.getElementById("daysFiveHumidityEl");
 
 // DISPLAY INFO ON PAGE
 function displayData(passedData) {
+    document.querySelector(".selected-city-section").style.display = "flex";
+    document.querySelector(".search-section").style.margin = "1em";
     forecastCityEl.innerText = cityName;
     currentWeatherIconEl.src = `http://openweathermap.org/img/wn/${passedData.current.weather[0].icon}@2x.png`;
     currentTempEl.innerText = passedData.current.temp;
