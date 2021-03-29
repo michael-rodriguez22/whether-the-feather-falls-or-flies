@@ -1,28 +1,14 @@
 # Whether The Feather Falls Or Flies
+This is an application that allows users to search by city name and receive a detailed forecast of today's weather conditions, as well as a five day forecast of weather into the future.
 
-ACCEPTANCE CRITERIA
-    GIVEN a weather dashboard with form inputs                          
-    WHEN I search for a city
-    THEN I am presented with current and future conditions for that city and that city is added to the search history
-    WHEN I view current weather conditions for that city
-    THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index
-    WHEN I view the UV index
-    THEN I am presented with a color that indicates whether the conditions are favorable, moderate, or severe
-    WHEN I view future weather conditions for that city
-    THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, and the humidity
-    WHEN I click on a city in the search history
-    THEN I am again presented with current and future conditions for that city
+Users are able to search by entering a city in the search bar, or by clicking an item displayed in the search history.
 
-ISSUES
-    Create general layout. should include:
-    - header
-    - search bar
-    - search history
-    - current city section
-        > current day info
-        > 5 day forecast info
-    - save searched cities to local storage 
-        > make searched cities clickable to display that cities weather information
-        > add button(s) to clear search history and/or clear individual cities from search history?
-    - display cities to page
-        > should display when a city is searched or when a city from the search history is clicked on
+I utilized the <a href="https://openweathermap.org/api">Open Weather Map API</a> to collect the data that is displayed.
+
+Here is a link <a href="https://mikeyrod22.github.io/whether-the-feather-falls-or-flies/">link to the deployed application</a>.
+
+Here are some screenshots of the application:
+
+<img src="assets/images/ss1.png">
+<img src="assets/images/ss2.png">
+<img src="assets/images/ss3.png">
