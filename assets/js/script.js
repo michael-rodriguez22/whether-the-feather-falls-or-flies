@@ -1,3 +1,4 @@
+var key = "c4b82f2dc22bce9d9b392206cadf8017";
 document.querySelector(".selected-city-section").style.display = "none";
 
 // DATES
